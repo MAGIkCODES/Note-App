@@ -2,7 +2,9 @@
   import { ref, onMounted } from 'vue';
 
   const showModal = ref(false)
-  const newNote = ref("");
+  // const newNote = ref("");
+  const newNoteTitle = ref("")
+  const newNoteContent = ref("")
   const errorMessage = ref ("");
   const notes = ref([]);
   
@@ -13,24 +15,33 @@
   }
 
   const addNote = () => {
-    if(newNote.value.length < 10)
+    if(newNoteContent.value.length < 10)
+    // if (newNoteTitle.value.length === 0 || newNoteContent.value.length === 0 )
     return errorMessage.value = 'Notes needs to be more than ten characters'
-    notes.value.push({
+    notes.value.unshift({
       id: Math.floor(Math.random() * 1000000),
-      text: newNote.value,
+      title: newNoteTitle.value,
+      text: newNoteContent.value,
       date: new Date(),
       backgroundColor: getRandomColor()
     }),
 
     saveNotesTolocalStorage();
     showModal.value = false;
-    newNote.value = '';
+    newNoteTitle.value = '';
+    newNoteContent.value = ''
     errorMessage.value = '';
   };
 
+  const deleteNote = (id) => {
+    notes.value = notes.value.filter(note => note.id !== id);
+    saveNotesTolocalStorage();
+  }
+
   const closeModal = () => {
     showModal.value = false;
-    newNote.value = '';
+    newNoteTitle.value = '';
+    newNoteContent.value = '';
     errorMessage.value = '';
   };
 
@@ -62,7 +73,8 @@
     <div v-if="showModal" class="overlay">
       <div class="modal">
         <button @click="closeModal" class="close">&times;</button>
-        <textarea v-model.trim="newNote" name="note" id="note" cols="30" rows="10"></textarea>
+        <input v-model="newNoteTitle" type="text" placeholder="Note Title">
+        <textarea v-model.trim="newNoteContent" name="note" id="note" cols="30" rows="10"></textarea>
         <p v-if="errorMessage">{{ errorMessage }}</p>
         <button @click="addNote">Add Note</button>
       </div>
@@ -74,9 +86,13 @@
       </header>
       <div class="card-container">
         <div v-for="note in notes" :key="note.id" class="card" :style="{backgroundColor: note.backgroundColor}">
-          <input type="text" placeholder="Note Title">
+         <h2>{{ note.title ? note.title : 'Add Title' }}</h2>
           <p class="main-text">{{note.text}}</p>
-          <p class="date">{{ note.date.toLocaleDateString("en-US") }}</p>
+          <div class="modify-note">
+            <p class="date">{{ note.date.toLocaleDateString("en-US") }}</p>
+            <button @click="deleteNote(note.id)">delete</button>
+            <button>edit</button>
+          </div>    
         </div>
       </div>
     </div>
@@ -124,8 +140,8 @@
   }
 
   .card {
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
     background-color: rgb(237, 182, 44);
     padding: 5px;
     border-radius: 5px;
@@ -138,13 +154,13 @@
     /* overflow-y: scroll; */
   }
 
-  input {
-    width: 100%;
+  .card h2 {
+    
     padding: 10px;
-    border: none;
-    background-color: aliceblue;
+    border-bottom: 1px solid rgb(20, 19, 19);
+    /* background-color: none; */
     outline: none;
-    /* text-transform: capitalize; */
+    text-transform: capitalize;
   }
 
   .main-text {
@@ -157,15 +173,26 @@
     color: #000;
   }
 
+  .modify-note {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .modify-note button {
+    margin-right: 10px;
+  }
+
   .card-container {
     display: flex;
     flex-wrap: wrap;
   }
 
   .overlay {
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: rgba(0, 0, 0, .77);
     display: flex;
     justify-content: center;
@@ -184,6 +211,15 @@
     justify-content: center;
     /* align-items: center; */
     flex-direction: column;
+  }
+
+  .modal input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    text-transform: capitalize;
   }
 
   #note {
