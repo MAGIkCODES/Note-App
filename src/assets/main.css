@@ -1,2 +1,213 @@
 @import './base.css';
 
+main {
+    height: 100vh;
+    width: 100vw;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: relative;
+  }
+
+  .container {
+    max-width: 85%;
+    padding: 20px;
+    margin: 0 auto ;
+    /* position: relative; */
+  }
+
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 75px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: red;
+  }
+
+  header button {
+    background: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
+  }
+
+  .card {
+    width: 350px;
+    height: 350px;
+    background-color: rgb(237, 182, 44);
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    overflow-wrap: break-word;
+    /* overflow-y: scroll; */
+  }
+
+  .card h2 {
+    
+    padding: 10px;
+    border-bottom: 1px solid rgb(20, 19, 19);
+    /* background-color: none; */
+    outline: none;
+    text-transform: capitalize;
+  }
+
+  .main-text {
+    /* margin-bottom: 50%; */
+    overflow-y: auto;
+    max-height: 100%;
+    padding: 10px;
+  }
+
+  /* Style the scrollbar */
+  .main-text::-webkit-scrollbar {
+    width: 8px;
+    height: 10px;
+    /* height: 10px; */
+  }
+
+  /* Track */
+  /* .main-text::-webkit-scrollbar-track { */
+    /* background: #f1f1f1; */
+  /* } */
+
+  /* Handle */
+  .main-text::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
+  }
+
+  /* Handle on hover */
+  .main-text::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  .date {
+    font-weight: 600;
+    color: #000;
+    margin-right: auto;
+  }
+
+  .modify-note {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; /* Align items vertically */
+    margin-top: 10px; /* Add some margin for spacing */
+}
+
+.modify-note button {
+  margin-right: 10px;
+  background-color: #333; /* Change button background color */
+  color: #fff; /* Change button text color */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.modify-note button:hover {
+  background-color: #d62323; /* Darken button color on hover */
+}
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .77);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* z-index: 10; */
+  }
+
+  .modal {
+    width: 700px;
+    max-width: 85%;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+  }
+
+  .modal input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    text-transform: capitalize;
+  }
+
+  #note {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    /* border: none; */
+    /* outline: none; */
+    outline-color: grey;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  .modal p {
+    color: red;
+  }
+
+  .modal button {
+    padding: 10px 20px;
+    font-size: 20px;
+    width: 100%;
+    background-color: red;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+
+  .modal button:hover {
+    background-color: rgb(179, 13, 13);
+  }
+
+  .modal .close {
+    width: 20px;
+    left: 0;
+    right: 10px;
+    margin-left: 93%;
+    background: none;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: red;
+  }
+
+  .modal .close:hover {
+    background-color: #fff;
+  }
+
+
+
+  
