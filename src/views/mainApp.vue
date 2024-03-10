@@ -11,12 +11,16 @@
   const isEditing = ref(false);
   
 
+ const getRandomColor = () => {
+    return "hsl("+ Math.random() * 360 +", 100%, 75%)";
+ }
   
 
   const addNote = () => {
-    if(newNoteContent.value.length < 10)
-    if (newNoteTitle.value.length === 0 || newNoteContent.value.length === 0 )
-    return errorMessage.value = 'Notes needs to be more than ten characters'
+    if (newNoteContent.value.length === 0 || newNoteContent.value.length < 10) {
+    errorMessage.value = 'Note content must be at least ten characters';
+    return;
+  }
     notes.value.unshift({
       id: Math.floor(Math.random() * 1000000),
       title: newNoteTitle.value,
@@ -99,7 +103,7 @@
     <div class="container">
         <header>
             <h1>Notes</h1>
-            <button @click="showModal = true">+</button>
+            <button @click="showModal =true">+</button>
         </header>
       <div class="card-container">
         <div v-for="note in notes" :key="note.id" class="card" :style="{backgroundColor: note.backgroundColor}">
