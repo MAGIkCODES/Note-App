@@ -233,6 +233,29 @@
     }
   }
 
+  .confirmation-modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+  }
+
+  .confirmation-modal button { 
+    cursor: pointer;
+    /* padding: 5px; */
+  }
+
+  .confirmation-modal .bg-red {
+    background-color: red;
+    border: 0;
+    color: white;
+  }
+
 
 
   
