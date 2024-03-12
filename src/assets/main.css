@@ -69,6 +69,7 @@
     overflow-y: auto;
     max-height: 100%;
     padding: 10px;
+    text-align: start;
   }
 
   /* Style the scrollbar */
@@ -147,7 +148,7 @@
     padding: 30px;
     position: relative;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     /* align-items: center; */
     flex-direction: column;
   }
@@ -224,7 +225,7 @@
 
     .card {
       /* Adjust card width or font sizes for smaller screens */
-      width: 80%;
+      width: 100%;
       font-size: 0.9em;
     }
 
